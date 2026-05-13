@@ -33,15 +33,22 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pages.apps.PagesConfig',
 ]
+APPLICATION_APPS = [
+    'pages.apps.PagesConfig',
+    'doctors.apps.DoctorsConfig', 
+    'listings.apps.ListingsConfig',
+    ]
+THIRD_PARTY_APPS = []
+
+INSTALLED_APPS = DJANGO_APPS + APPLICATION_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,8 +85,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'erb9',
+        'USER': 'postgres',
+        'PASSWORD': 'Anson1107',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -126,3 +137,5 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'config/static')]
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
