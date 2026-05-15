@@ -7,24 +7,24 @@ class Listing(models.Model):
     title=models.CharField(max_length=200)
     address=models.CharField(max_length=200)
     district=models.CharField(max_length=50)
-    choices=models.CharField(max_length=50)
-    description=models.TextField(blank=True)
-    services=models.CharField(max_length=200)
-    service=models.IntegerField()
-    room_type=models.CharField(max_length=50)
-    rooms=models.IntegerField()
+    choices=models.CharField(max_length=50, blank=True)
+    description=models.TextField(null=True,blank=True)
+    services=models.CharField(max_length=200, blank=True)
+    service=models.IntegerField(null=True,blank=True)
+    room_type=models.CharField(max_length=50, blank=True)
+    rooms=models.IntegerField(null=True,blank=True)
     photo_main=models.ImageField(upload_to='photos/%Y/%m/%d/')
     photo_1 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_2 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_3 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     photo_4 = models.ImageField(upload_to='photos/%Y/%m/%d/', blank=True)
     is_published=models.BooleanField(default=True)
-    List_date = models.DateTimeField(auto_now_add=True)
+    list_date = models.DateTimeField(auto_now_add=True)
     
     
     class Meta:
-        ordering = ['-List_date']
-        indexes = [models.Index(fields=['-List_date'])]
+        ordering = ['-list_date']
+        indexes = [models.Index(fields=['-list_date'])]
         
     def __str__(self):
         return self.title
